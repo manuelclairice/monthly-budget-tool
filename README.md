@@ -16,7 +16,10 @@ A modern, production-ready **Single Page Application (SPA)** for tracking monthl
 - 🧪 **Well-Tested** - Unit tests with Vitest and Vue Test Utils
 - 🚀 **Optimized Build** - Vite with code splitting and tree-shaking
 - 📱 **Responsive Design** - Mobile-first, works on all devices
-- 🌙 **Dark Mode Ready** - CSS variables for easy theming
+- 🌊 **Ocean Theme** - Calming, modern design with muted teal and sage green palette
+- ✏️ **Edit Inline** - Update expenses and income without deleting
+- 📅 **Month History** - Track and compare previous months automatically
+- 🎨 **Inter Font** - Clean, professional typography
 
 ## 🚀 Quick Start
 
@@ -38,6 +41,7 @@ pnpm generate
 ## 📚 Documentation
 
 📖 **[Complete Setup Guide](./SETUP_GUIDE.md)** - Comprehensive developer documentation including:
+
 - Detailed installation instructions
 - Project structure explanation
 - Testing guide with examples
@@ -51,24 +55,29 @@ pnpm generate
 ## 🛠 Tech Stack
 
 **Framework & Build**
+
 - Nuxt 4 (Vue 3 + Composition API)
 - TypeScript
 - Vite
 
 **State & Data**
+
 - Pinia (state management)
 - LocalStorage (persistence)
 
 **UI & Charts**
+
 - Chart.js 4
 - Custom CSS with CSS variables
 
 **Testing & Quality**
+
 - Vitest (unit tests)
 - ESLint + Prettier
 - TypeScript strict mode
 
 **Deployment**
+
 - Netlify (recommended)
 - GitHub Actions (CI/CD)
 
@@ -111,6 +120,7 @@ pnpm test:coverage
 ```
 
 Example test:
+
 ```typescript
 it('calculates balance correctly', () => {
   const store = useBudgetStore()
@@ -131,6 +141,7 @@ it('calculates balance correctly', () => {
 3. **Deploy** - Automatic on push to main
 
 Or use the CLI:
+
 ```bash
 netlify init
 netlify deploy --prod
@@ -149,12 +160,7 @@ NUXT_PUBLIC_STORYBLOK_TOKEN=your_token_here
 <script setup lang="ts">
 import { useBudget } from '~/composables/useBudget'
 
-const { 
-  totalIncome, 
-  totalExpenses, 
-  balance,
-  addExpense 
-} = useBudget()
+const { totalIncome, totalExpenses, balance, addExpense } = useBudget()
 
 const handleAddExpense = () => {
   addExpense({
