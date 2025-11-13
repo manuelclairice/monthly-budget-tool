@@ -22,13 +22,11 @@
     "@oxc-parser/binding-linux-x64-gnu": "^0.97.0",
     "@oxc-transform/binding-linux-x64-gnu": "^0.97.0",
     "@pinia/nuxt": "^0.5.1",
-    "abort-controller": "^3.0.0",
     "chart.js": "^4.4.0",
     "nuxt": "^4.2.1",
     "pinia": "^2.1.7",
     "vue": "^3.5.24",
-    "vue-router": "^4.6.3",
-    "web-streams-polyfill": "^4.2.0"
+    "vue-router": "^4.6.3"
   },
   "devDependencies": {
     "@nuxt/eslint": "^0.5.0",

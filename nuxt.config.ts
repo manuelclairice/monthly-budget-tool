@@ -27,10 +27,7 @@ export default defineNuxtConfig({
       }
     },
     optimizeDeps: {
-      include: ['chart.js', 'web-streams-polyfill/ponyfill/es2018']
-    },
-    ssr: {
-      noExternal: ['web-streams-polyfill', 'abort-controller']
+      include: ['chart.js']
     }
   },
   
