@@ -1,0 +1,413 @@
+/* Global Styles - Modern Design */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  /* Vibrant Palette */
+  --color-primary: #00B4D8;        /* Vibrant teal/cyan - primary actions */
+  --color-primary-dark: #0096C7;   /* Deeper cyan - hover states */
+  --color-primary-light: #90E0EF;  /* Light cyan - subtle accents */
+  --color-secondary: #7B68EE;      /* Medium purple - secondary elements */
+  --color-accent: #FF6B9D;         /* Pink accent - highlights & CTAs */
+  --color-accent-orange: #FFB347;  /* Warm orange - warnings & energy */
+  --color-accent-mint: #A8E6CF;    /* Mint green - success states */
+  --color-background: #F8F9FA;     /* Off-white - main background */
+  --color-surface: #FFFFFF;        /* Pure white - cards and surfaces */
+  --color-border: #E9ECEF;         /* Light gray border */
+  --color-text: #212529;           /* Almost black - primary text */
+  --color-text-secondary: #6C757D; /* Medium gray - secondary text */
+  --color-text-light: #ADB5BD;     /* Light gray - hints & labels */
+  
+  /* Semantic Colors (Vibrant & Accessible) */
+  --color-success: #06D6A0;        /* Bright teal green */
+  --color-warning: #FFB347;        /* Orange */
+  --color-danger: #EF476F;         /* Vibrant pink-red */
+  --color-info: #4CC9F0;           /* Sky blue */
+  
+  /* Chart Colors - Pastel Harmony (60-80% opacity feel) */
+  --chart-color-1: rgba(62, 207, 142, 0.85);  /* Mint green */
+  --chart-color-2: rgba(17, 138, 178, 0.85);  /* Blue */
+  --chart-color-3: rgba(239, 71, 111, 0.85);  /* Coral */
+  --chart-color-4: rgba(255, 209, 102, 0.85); /* Yellow */
+  --chart-color-5: rgba(126, 224, 174, 0.85); /* Light mint */
+  --chart-color-6: rgba(72, 181, 212, 0.85);  /* Sky blue */
+  --chart-color-7: rgba(248, 123, 151, 0.85); /* Light coral */
+  --chart-color-8: rgba(255, 232, 153, 0.85); /* Light yellow */
+  --chart-color-9: rgba(46, 196, 182, 0.85);  /* Teal */
+  --chart-color-10: rgba(165, 105, 189, 0.85); /* Purple */
+  
+  /* Spacing - Increased for modern feel */
+  --spacing-xs: 0.25rem;     /* 4px */
+  --spacing-sm: 0.5rem;      /* 8px */
+  --spacing-md: 1rem;        /* 16px */
+  --spacing-lg: 1.5rem;      /* 24px */
+  --spacing-xl: 2rem;        /* 32px */
+  --spacing-2xl: 3rem;       /* 48px */
+  --spacing-3xl: 4rem;       /* 64px */
+  
+  /* Typography - Modern Hierarchy with Poppins */
+  --font-sans: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Manrope', 'Poppins', sans-serif;
+  --font-size-xs: 0.75rem;      /* 12px - Captions, labels */
+  --font-size-sm: 0.875rem;     /* 14px - Small text */
+  --font-size-base: 1rem;       /* 16px - Body text */
+  --font-size-lg: 1.125rem;     /* 18px - Large body */
+  --font-size-xl: 1.25rem;      /* 20px - H4 */
+  --font-size-2xl: 1.5rem;      /* 24px - H3 */
+  --font-size-3xl: 2rem;        /* 32px - H2 */
+  --font-size-4xl: 2.5rem;      /* 40px - H1 */
+  
+  /* Line Heights */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+  
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  
+  /* Border Radius - Soft & Friendly */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-2xl: 28px;
+  --radius-full: 9999px; /* Pill shape */
+}
+
+/* 🌙 DARK MODE - Carefully Tuned for Readability */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Primary Colors - Enhanced Contrast for Dark */
+    --primary: #4ADEAA;        /* Brighter mint - stands out */
+    --primary-light: #73E8C0;  /* Light mint */
+    --primary-dark: #2EBD8A;   /* Dark mint */
+    
+    --secondary: #3FA8D4;      /* Brighter blue */
+    --secondary-light: #6BC2E5; /* Light blue */
+    --secondary-dark: #2889B5;  /* Dark blue */
+    
+    --accent: #FF6B8A;         /* Softer coral - less harsh */
+    --accent-light: #FF8FA8;   /* Light coral */
+    --accent-dark: #E94A6D;    /* Dark coral */
+    
+    /* Semantic Colors - Adjusted for Dark */
+    --success: #4ADEAA;        /* Bright mint */
+    --warning: #FFD97D;        /* Lighter yellow */
+    --danger: #FF6B8A;         /* Soft coral */
+    --info: #3FA8D4;           /* Bright blue */
+    
+    /* Neutral Palette - Dark Mode Foundation */
+    --background: #0F1419;     /* Deep dark blue-gray */
+    --surface: #1A1F26;        /* Elevated surface */
+    --surface-hover: #252B35;  /* Hover state */
+    
+    --text-primary: #E8EAED;   /* Near white - main text */
+    --text-secondary: #9BA1A6; /* Medium gray */
+    --text-tertiary: #6B7280;  /* Darker gray */
+    --text-inverse: #0F1419;   /* Dark text on light */
+    
+    --border-light: #2A3038;   /* Subtle border */
+    --border-medium: #3D4550;  /* Medium border */
+    --border-dark: #6B7280;    /* Strong border */
+    
+    /* Chart Colors - Vibrant & Clear on Dark */
+    --chart-color-1: rgba(74, 222, 170, 0.9);  /* Bright mint */
+    --chart-color-2: rgba(63, 168, 212, 0.9);  /* Bright blue */
+    --chart-color-3: rgba(255, 107, 138, 0.9); /* Soft coral */
+    --chart-color-4: rgba(255, 217, 125, 0.9); /* Bright yellow */
+    --chart-color-5: rgba(115, 232, 192, 0.9); /* Light mint */
+    --chart-color-6: rgba(107, 194, 229, 0.9); /* Sky blue */
+    --chart-color-7: rgba(255, 143, 168, 0.9); /* Light coral */
+    --chart-color-8: rgba(255, 232, 179, 0.9); /* Light yellow */
+    --chart-color-9: rgba(56, 189, 248, 0.9);  /* Cyan */
+    --chart-color-10: rgba(192, 132, 252, 0.9); /* Purple */
+    
+    /* Shadows - Deeper & More Pronounced */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 2px 4px 0 rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+    --shadow-xl: 0 8px 16px 0 rgba(0, 0, 0, 0.6);
+    --shadow-2xl: 0 12px 24px 0 rgba(0, 0, 0, 0.7);
+    --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.4);
+    --shadow-card-hover: 0 6px 16px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 20px rgba(74, 222, 170, 0.25);
+  }
+}
+  
+  /* Shadows - Subtle & Soft (Light Mode) */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 4px 8px 0 rgba(0, 0, 0, 0.08);
+  --shadow-xl: 0 8px 16px 0 rgba(0, 0, 0, 0.1);
+  --shadow-2xl: 0 12px 24px 0 rgba(0, 0, 0, 0.12);
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow-card-hover: 0 6px 16px rgba(0, 0, 0, 0.08);
+  --shadow-glow: 0 0 16px rgba(62, 207, 142, 0.2);
+  
+  /* Transitions - Smoother animations */
+  --transition-fast: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 400ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  /* Icon Sizes */
+  --icon-xs: 1rem;     /* 16px */
+  --icon-sm: 1.25rem;  /* 20px */
+  --icon-md: 1.5rem;   /* 24px */
+  --icon-lg: 2rem;     /* 32px */
+  --icon-xl: 3rem;     /* 48px */
+  
+  /* Touch Targets (minimum 44x44px for accessibility) */
+  --touch-target: 44px;
+  
+  /* Z-index Scale */
+  --z-base: 1;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-modal: 300;
+  --z-popover: 400;
+  --z-tooltip: 500;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #1A2421;
+    --color-surface: #243430;
+    --color-border: #3A4A45;
+    --color-text: #E8F0ED;
+    --color-text-secondary: #A5C3B9;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text);
+  background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: var(--font-weight-normal);
+}
+
+/* Typography Hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 var(--spacing-md) 0;
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+h1 { 
+  font-size: var(--font-size-4xl); 
+  font-weight: var(--font-weight-extrabold); 
+  line-height: 1.2;
+}
+h2 { 
+  font-size: var(--font-size-3xl); 
+  font-weight: var(--font-weight-bold);
+}
+h3 { 
+  font-size: var(--font-size-2xl); 
+  font-weight: var(--font-weight-semibold);
+}
+h4 { 
+  font-size: var(--font-size-xl); 
+  font-weight: var(--font-weight-semibold);
+}
+
+p {
+  margin: 0 0 var(--spacing-md) 0;
+  line-height: var(--line-height-relaxed);
+}
+
+/* Utility Typography Classes */
+.text-xs { font-size: var(--font-size-xs); }
+.text-sm { font-size: var(--font-size-sm); }
+.text-base { font-size: var(--font-size-base); }
+.text-lg { font-size: var(--font-size-lg); }
+.text-xl { font-size: var(--font-size-xl); }
+
+.font-light { font-weight: var(--font-weight-light); }
+.font-normal { font-weight: var(--font-weight-normal); }
+.font-medium { font-weight: var(--font-weight-medium); }
+.font-semibold { font-weight: var(--font-weight-semibold); }
+.font-bold { font-weight: var(--font-weight-bold); }
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  font-weight: var(--font-weight-medium);
+}
+
+/* Material Symbols Icons */
+.material-symbols-rounded {
+  font-family: 'Material Symbols Rounded';
+  font-weight: normal;
+  font-style: normal;
+  font-size: var(--icon-md);
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'liga';
+  vertical-align: middle;
+}
+
+/* Utility Classes */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Focus styles for accessibility */
+:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Improved Interactive States */
+a, button, [role="button"], [role="tab"] {
+  -webkit-tap-highlight-color: rgba(0, 180, 216, 0.1);
+  touch-action: manipulation;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Micro-interaction Utility Classes */
+.card-hover {
+  transition: all var(--transition-base);
+}
+
+.card-hover:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.scale-hover {
+  transition: transform var(--transition-fast);
+}
+
+.scale-hover:hover {
+  transform: scale(1.05);
+}
+
+.fade-in {
+  animation: fadeIn var(--transition-base) ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bounce-in {
+  animation: bounceIn var(--transition-bounce) ease-out;
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Gradient Background Utilities */
+.gradient-primary {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+}
+
+.gradient-accent {
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-secondary) 100%);
+}
+
+.gradient-success {
+  background: linear-gradient(135deg, var(--color-success) 0%, var(--color-accent-mint) 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  .card-hover:hover,
+  .scale-hover:hover {
+    transform: none;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

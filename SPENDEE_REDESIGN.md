@@ -1,4 +1,4 @@
-# 🎨 Spendee-Inspired UI/UX Redesign
+# 🎨 UI/UX Redesign
 
 ## Overview
 

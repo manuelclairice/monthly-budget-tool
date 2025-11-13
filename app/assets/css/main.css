@@ -1,4 +1,4 @@
-/* Global Styles - Spendee-Inspired Modern Design */
+/* Global Styles - Spendee-Inspired Dual Theme Design */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
 
@@ -8,39 +8,48 @@
   box-sizing: border-box;
 }
 
+/* ============================================
+   🌞 LIGHT MODE - Spendee-Inspired Theme (Default)
+   ============================================ */
 :root {
-  /* Vibrant Spendee-Inspired Palette */
-  --color-primary: #00B4D8;        /* Vibrant teal/cyan - primary actions */
-  --color-primary-dark: #0096C7;   /* Deeper cyan - hover states */
-  --color-primary-light: #90E0EF;  /* Light cyan - subtle accents */
-  --color-secondary: #7B68EE;      /* Medium purple - secondary elements */
-  --color-accent: #FF6B9D;         /* Pink accent - highlights & CTAs */
-  --color-accent-orange: #FFB347;  /* Warm orange - warnings & energy */
-  --color-accent-mint: #A8E6CF;    /* Mint green - success states */
-  --color-background: #F8F9FA;     /* Off-white - main background */
-  --color-surface: #FFFFFF;        /* Pure white - cards and surfaces */
-  --color-border: #E9ECEF;         /* Light gray border */
-  --color-text: #212529;           /* Almost black - primary text */
-  --color-text-secondary: #6C757D; /* Medium gray - secondary text */
-  --color-text-light: #ADB5BD;     /* Light gray - hints & labels */
+  /* Primary Colors - Fresh & Friendly */
+  --color-primary: #3ECF8E;        /* Mint green - Primary action */
+  --color-primary-dark: #2BA86F;   /* Dark mint - Active states */
+  --color-primary-light: #7EE0AE;  /* Light mint - Hover states */
   
-  /* Semantic Colors (Vibrant & Accessible) */
-  --color-success: #06D6A0;        /* Bright teal green */
-  --color-warning: #FFB347;        /* Orange */
-  --color-danger: #EF476F;         /* Vibrant pink-red */
-  --color-info: #4CC9F0;           /* Sky blue */
+  --color-secondary: #118AB2;      /* Blue - Secondary actions */
+  --color-secondary-light: #48B5D4; /* Light blue */
+  --color-secondary-dark: #0A5F7D;  /* Dark blue */
   
-  /* Chart Colors (Vibrant Pastel Palette) */
-  --chart-color-1: #00B4D8;        /* Cyan */
-  --chart-color-2: #7B68EE;        /* Purple */
-  --chart-color-3: #FF6B9D;        /* Pink */
-  --chart-color-4: #FFB347;        /* Orange */
-  --chart-color-5: #A8E6CF;        /* Mint */
-  --chart-color-6: #4CC9F0;        /* Sky blue */
-  --chart-color-7: #C77DFF;        /* Lavender */
-  --chart-color-8: #FFC6FF;        /* Light pink */
-  --chart-color-9: #06D6A0;        /* Teal green */
-  --chart-color-10: #FFD60A;       /* Yellow */
+  --color-accent: #EF476F;         /* Coral red - Highlights & CTAs */
+  --color-accent-orange: #FFD166;  /* Yellow - Warnings */
+  --color-accent-mint: #3ECF8E;    /* Mint green - Success states */
+  
+  /* Semantic Colors */
+  --color-success: #3ECF8E;        /* Mint green */
+  --color-warning: #FFD166;        /* Yellow */
+  --color-danger: #EF476F;         /* Coral red */
+  --color-info: #118AB2;           /* Blue */
+  
+  /* Neutral Palette - Airy & Clean */
+  --color-background: #F8F9FA;     /* Soft gray background */
+  --color-surface: #FFFFFF;        /* Pure white cards */
+  --color-border: #E5E7EB;         /* Very light border */
+  --color-text: #1E1E1E;           /* Near black - Main text */
+  --color-text-secondary: #6B7280; /* Medium gray - Secondary text */
+  --color-text-light: #9CA3AF;     /* Light gray - Tertiary text */
+  
+  /* Chart Colors - Pastel Harmony (60-80% opacity feel) */
+  --chart-color-1: rgba(62, 207, 142, 0.85);  /* Mint green */
+  --chart-color-2: rgba(17, 138, 178, 0.85);  /* Blue */
+  --chart-color-3: rgba(239, 71, 111, 0.85);  /* Coral */
+  --chart-color-4: rgba(255, 209, 102, 0.85); /* Yellow */
+  --chart-color-5: rgba(126, 224, 174, 0.85); /* Light mint */
+  --chart-color-6: rgba(72, 181, 212, 0.85);  /* Sky blue */
+  --chart-color-7: rgba(248, 123, 151, 0.85); /* Light coral */
+  --chart-color-8: rgba(255, 232, 153, 0.85); /* Light yellow */
+  --chart-color-9: rgba(46, 196, 182, 0.85);  /* Teal */
+  --chart-color-10: rgba(165, 105, 189, 0.85); /* Purple */
   
   /* Spacing - Increased for modern feel */
   --spacing-xs: 0.25rem;     /* 4px */
@@ -76,25 +85,23 @@
   --font-weight-bold: 700;
   --font-weight-extrabold: 800;
   
-  /* Border Radius (More rounded for modern feel) */
-  --radius-sm: 0.5rem;      /* 8px */
-  --radius-md: 0.75rem;     /* 12px */
-  --radius-lg: 1rem;        /* 16px */
-  --radius-xl: 1.5rem;      /* 24px */
-  --radius-2xl: 2rem;       /* 32px */
-  --radius-full: 9999px;    /* Pill shape */
+  /* Shadows - Subtle & Soft (Light Mode) */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 4px 8px 0 rgba(0, 0, 0, 0.08);
+  --shadow-xl: 0 8px 16px 0 rgba(0, 0, 0, 0.1);
+  --shadow-2xl: 0 12px 24px 0 rgba(0, 0, 0, 0.12);
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow-card-hover: 0 6px 16px rgba(0, 0, 0, 0.08);
+  --shadow-glow: 0 0 16px rgba(62, 207, 142, 0.2);
   
-  /* Shadows (More elevated, modern) */
-  --shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.06);
-  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.08);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.12);
-  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.15);
-  --shadow-xl: 0 24px 64px rgba(0, 0, 0, 0.18);
-  
-  /* Interactive Shadows */
-  --shadow-focus: 0 0 0 4px rgba(0, 180, 216, 0.2);
-  --shadow-glow: 0 8px 32px rgba(0, 180, 216, 0.3);
-  --shadow-card-hover: 0 12px 40px rgba(0, 0, 0, 0.15);
+  /* Border Radius - Soft & Friendly */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-2xl: 28px;
+  --radius-full: 9999px; /* Pill shape */
   
   /* Transitions - Smoother animations */
   --transition-fast: 200ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -121,16 +128,65 @@
   --z-tooltip: 500;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: #1A2421;
-    --color-surface: #243430;
-    --color-border: #3A4A45;
-    --color-text: #E8F0ED;
-    --color-text-secondary: #A5C3B9;
+/* ============================================
+   🌙 DARK MODE - Optimized for Usability & Eye Strain Reduction
+   ============================================ */
+/* @media (prefers-color-scheme: dark) {
+  :root { */
+    /* Primary Colors - Boosted Saturation (+15%) for Contrast */
+   /* --color-primary: #4ADE80;        /* Brighter mint - enhanced visibility */
+    /*--color-primary-dark: #22C55E;   /* Green accent */
+    /*--color-primary-light: #86EFAC;  /* Light mint */
+    
+    /*--color-secondary: #38BDF8;      /* Sky blue - more saturated */
+    /*--color-secondary-light: #7DD3FC; /* Light sky blue */
+    /*--color-secondary-dark: #0EA5E9;  /* Deep sky blue */
+    
+    /*--color-accent: #FB7185;         /* Rose - vibrant but not harsh */
+    /*--color-accent-orange: #FDE047;  /* Bright yellow - high contrast */
+    /*--color-accent-mint: #4ADE80;    /* Bright mint */
+    
+    /* Semantic Colors - Enhanced for Dark Backgrounds */
+    /*--color-success: #4ADE80;        /* Bright mint green */
+    /*--color-warning: #FDE047;        /* Bright yellow */
+    /*--color-danger: #FB7185;         /* Rose red */
+    /*--color-info: #38BDF8;           /* Sky blue */
+    
+    /* Neutral Palette - Optimized for Eye Comfort */
+    /* --color-background: #121212;     /* Not pure black - reduces eye strain */
+    /*--color-border: rgba(255, 255, 255, 0.05);  /* Subtle white border */
+    /*--color-surface: #1E1E1E;        /* Elevated cards */
+    /*--color-text: #E5E7EB;           /* Primary text - high contrast */
+    /*--color-text-secondary: #9CA3AF; /* Secondary text */
+    /*--color-text-light: #6B7280;     /* Tertiary text */
+     
+    /* Chart Colors - Saturated Variants with Dark Transparency */
+    /* --chart-color-1: rgba(74, 222, 128, 1);    /* Saturated mint */
+    /* --chart-color-2: rgba(56, 189, 248, 1);    /* Saturated blue */
+    /*--chart-color-3: rgba(251, 113, 133, 1);   /* Saturated rose */
+    /*--chart-color-4: rgba(253, 224, 71, 1);    /* Saturated yellow */
+    /*--chart-color-5: rgba(134, 239, 172, 1);   /* Light mint */
+    /*--chart-color-6: rgba(125, 211, 252, 1);   /* Light blue */
+    /*--chart-color-7: rgba(252, 165, 165, 1);   /* Light rose */
+    /*--chart-color-8: rgba(254, 240, 138, 1);   /* Light yellow */
+    /*--chart-color-9: rgba(34, 211, 238, 1);    /* Cyan */
+    /*--chart-color-10: rgba(196, 181, 253, 1);  /*Purple */
+    
+    /* Shadows - Inner Glow & Subtle Gradient Layers */
+    /* --shadow-sm: 0 0 0 1px rgba(255, 255, 255, 0.03);
+    --shadow-md: 0 0 0 1px rgba(255, 255, 255, 0.05);
+    --shadow-lg: inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+    --shadow-xl: 0 8px 16px 0 rgba(0, 0, 0, 0.4), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+    --shadow-2xl: 0 12px 24px 0 rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+    --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05);
+    --shadow-card-hover: 0 6px 16px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.08), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+    --shadow-glow: 0 0 24px rgba(74, 222, 128, 0.3), 0 0 12px rgba(74, 222, 128, 0.2);
   }
-}
+} */
 
+/* ============================================
+   BASE STYLES
+   ============================================ */
 body {
   margin: 0;
   padding: 0;
@@ -141,157 +197,98 @@ body {
   background-color: var(--color-background);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-weight: var(--font-weight-normal);
 }
 
-/* Typography Hierarchy - Spendee Style */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0 0 var(--spacing-md) 0;
   font-family: var(--font-display);
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-extrabold);
   line-height: var(--line-height-tight);
-  letter-spacing: -0.02em;
   color: var(--color-text);
 }
 
-h1 { 
-  font-size: var(--font-size-4xl); 
-  font-weight: var(--font-weight-extrabold); 
-  line-height: 1.2;
-}
-h2 { 
-  font-size: var(--font-size-3xl); 
-  font-weight: var(--font-weight-bold);
-}
-h3 { 
-  font-size: var(--font-size-2xl); 
-  font-weight: var(--font-weight-semibold);
-}
-h4 { 
-  font-size: var(--font-size-xl); 
-  font-weight: var(--font-weight-semibold);
-}
+h1 { font-size: var(--font-size-4xl); }
+h2 { font-size: var(--font-size-3xl); }
+h3 { font-size: var(--font-size-2xl); }
+h4 { font-size: var(--font-size-xl); }
+h5 { font-size: var(--font-size-lg); }
+h6 { font-size: var(--font-size-base); }
 
 p {
   margin: 0 0 var(--spacing-md) 0;
-  line-height: var(--line-height-relaxed);
 }
 
-/* Utility Typography Classes */
-.text-xs { font-size: var(--font-size-xs); }
-.text-sm { font-size: var(--font-size-sm); }
-.text-base { font-size: var(--font-size-base); }
-.text-lg { font-size: var(--font-size-lg); }
-.text-xl { font-size: var(--font-size-xl); }
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
 
-.font-light { font-weight: var(--font-weight-light); }
-.font-normal { font-weight: var(--font-weight-normal); }
-.font-medium { font-weight: var(--font-weight-medium); }
-.font-semibold { font-weight: var(--font-weight-semibold); }
-.font-bold { font-weight: var(--font-weight-bold); }
+a:hover {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
 
 button {
-  font-family: inherit;
+  font-family: var(--font-sans);
   cursor: pointer;
-  font-weight: var(--font-weight-medium);
 }
 
-/* Material Symbols Icons */
-.material-symbols-rounded {
-  font-family: 'Material Symbols Rounded';
-  font-weight: normal;
-  font-style: normal;
-  font-size: var(--icon-md);
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  font-feature-settings: 'liga';
-  vertical-align: middle;
-}
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
 
-/* Utility Classes */
-.container {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 var(--spacing-lg);
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
-/* Focus styles for accessibility */
-:focus-visible {
-  outline: 3px solid var(--color-primary);
-  outline-offset: 3px;
-  border-radius: var(--radius-sm);
-}
-
-*:focus:not(:focus-visible) {
-  outline: none;
-}
-
-/* Improved Interactive States */
-a, button, [role="button"], [role="tab"] {
-  -webkit-tap-highlight-color: rgba(0, 180, 216, 0.1);
-  touch-action: manipulation;
-}
-
-/* Smooth Scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Micro-interaction Utility Classes */
-.card-hover {
+/* Card Styles */
+.card {
+  background: var(--color-surface);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
   transition: all var(--transition-base);
 }
 
 .card-hover:hover {
-  transform: translateY(-4px) scale(1.02);
   box-shadow: var(--shadow-card-hover);
+  transform: translateY(-2px);
 }
 
 .scale-hover {
-  transition: transform var(--transition-fast);
+  transition: transform var(--transition-base);
 }
 
 .scale-hover:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
-.fade-in {
-  animation: fadeIn var(--transition-base) ease-in;
+/* Gradients */
+.gradient-primary {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
 }
 
+.gradient-accent {
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-orange) 100%);
+}
+
+.gradient-success {
+  background: linear-gradient(135deg, var(--color-success) 0%, var(--color-info) 100%);
+}
+
+/* Animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-.bounce-in {
-  animation: bounceIn var(--transition-bounce) ease-out;
 }
 
 @keyframes bounceIn {
@@ -308,47 +305,58 @@ html {
   }
 }
 
-.pulse {
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-@keyframes pulse {
+@keyframes floatPulse {
   0%, 100% {
-    opacity: 1;
+    transform: translateY(0) scale(1);
   }
   50% {
-    opacity: 0.7;
+    transform: translateY(-8px) scale(1.02);
   }
 }
 
-/* Gradient Background Utilities */
-.gradient-primary {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
-}
-
-.gradient-accent {
-  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-secondary) 100%);
-}
-
-.gradient-success {
-  background: linear-gradient(135deg, var(--color-success) 0%, var(--color-accent-mint) 100%);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
+@keyframes iconBounce {
+  0%, 100% {
+    transform: scale(1);
   }
-  
-  .card-hover:hover,
-  .scale-hover:hover {
-    transform: none;
+  50% {
+    transform: scale(1.3);
   }
-  
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  75% {
+    transform: scale(1.1);
   }
 }
+
+.fade-in {
+  animation: fadeIn 0.4s var(--transition-base) forwards;
+}
+
+.bounce-in {
+  animation: bounceIn 0.5s var(--transition-bounce) forwards;
+}
+
+/* Spacing Utilities */
+.mt-xs { margin-top: var(--spacing-xs); }
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.mt-xl { margin-top: var(--spacing-xl); }
+
+.mb-xs { margin-bottom: var(--spacing-xs); }
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+.mb-xl { margin-bottom: var(--spacing-xl); }
+
+.p-xs { padding: var(--spacing-xs); }
+.p-sm { padding: var(--spacing-sm); }
+.p-md { padding: var(--spacing-md); }
+.p-lg { padding: var(--spacing-lg); }
+.p-xl { padding: var(--spacing-xl); }
+
+/* Text Utilities */
+.text-primary { color: var(--color-primary); }
+.text-secondary { color: var(--color-text-secondary); }
+.text-light { color: var(--color-text-light); }
+.text-center { text-align: center; }
+.text-bold { font-weight: var(--font-weight-bold); }
+.text-semibold { font-weight: var(--font-weight-semibold); }
