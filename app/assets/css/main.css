@@ -1,0 +1,354 @@
+/* Global Styles - Spendee-Inspired Modern Design */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  /* Vibrant Spendee-Inspired Palette */
+  --color-primary: #00B4D8;        /* Vibrant teal/cyan - primary actions */
+  --color-primary-dark: #0096C7;   /* Deeper cyan - hover states */
+  --color-primary-light: #90E0EF;  /* Light cyan - subtle accents */
+  --color-secondary: #7B68EE;      /* Medium purple - secondary elements */
+  --color-accent: #FF6B9D;         /* Pink accent - highlights & CTAs */
+  --color-accent-orange: #FFB347;  /* Warm orange - warnings & energy */
+  --color-accent-mint: #A8E6CF;    /* Mint green - success states */
+  --color-background: #F8F9FA;     /* Off-white - main background */
+  --color-surface: #FFFFFF;        /* Pure white - cards and surfaces */
+  --color-border: #E9ECEF;         /* Light gray border */
+  --color-text: #212529;           /* Almost black - primary text */
+  --color-text-secondary: #6C757D; /* Medium gray - secondary text */
+  --color-text-light: #ADB5BD;     /* Light gray - hints & labels */
+  
+  /* Semantic Colors (Vibrant & Accessible) */
+  --color-success: #06D6A0;        /* Bright teal green */
+  --color-warning: #FFB347;        /* Orange */
+  --color-danger: #EF476F;         /* Vibrant pink-red */
+  --color-info: #4CC9F0;           /* Sky blue */
+  
+  /* Chart Colors (Vibrant Pastel Palette) */
+  --chart-color-1: #00B4D8;        /* Cyan */
+  --chart-color-2: #7B68EE;        /* Purple */
+  --chart-color-3: #FF6B9D;        /* Pink */
+  --chart-color-4: #FFB347;        /* Orange */
+  --chart-color-5: #A8E6CF;        /* Mint */
+  --chart-color-6: #4CC9F0;        /* Sky blue */
+  --chart-color-7: #C77DFF;        /* Lavender */
+  --chart-color-8: #FFC6FF;        /* Light pink */
+  --chart-color-9: #06D6A0;        /* Teal green */
+  --chart-color-10: #FFD60A;       /* Yellow */
+  
+  /* Spacing - Increased for modern feel */
+  --spacing-xs: 0.25rem;     /* 4px */
+  --spacing-sm: 0.5rem;      /* 8px */
+  --spacing-md: 1rem;        /* 16px */
+  --spacing-lg: 1.5rem;      /* 24px */
+  --spacing-xl: 2rem;        /* 32px */
+  --spacing-2xl: 3rem;       /* 48px */
+  --spacing-3xl: 4rem;       /* 64px */
+  
+  /* Typography - Modern Hierarchy with Poppins */
+  --font-sans: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Manrope', 'Poppins', sans-serif;
+  --font-size-xs: 0.75rem;      /* 12px - Captions, labels */
+  --font-size-sm: 0.875rem;     /* 14px - Small text */
+  --font-size-base: 1rem;       /* 16px - Body text */
+  --font-size-lg: 1.125rem;     /* 18px - Large body */
+  --font-size-xl: 1.25rem;      /* 20px - H4 */
+  --font-size-2xl: 1.5rem;      /* 24px - H3 */
+  --font-size-3xl: 2rem;        /* 32px - H2 */
+  --font-size-4xl: 2.5rem;      /* 40px - H1 */
+  
+  /* Line Heights */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+  
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  
+  /* Border Radius (More rounded for modern feel) */
+  --radius-sm: 0.5rem;      /* 8px */
+  --radius-md: 0.75rem;     /* 12px */
+  --radius-lg: 1rem;        /* 16px */
+  --radius-xl: 1.5rem;      /* 24px */
+  --radius-2xl: 2rem;       /* 32px */
+  --radius-full: 9999px;    /* Pill shape */
+  
+  /* Shadows (More elevated, modern) */
+  --shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0 24px 64px rgba(0, 0, 0, 0.18);
+  
+  /* Interactive Shadows */
+  --shadow-focus: 0 0 0 4px rgba(0, 180, 216, 0.2);
+  --shadow-glow: 0 8px 32px rgba(0, 180, 216, 0.3);
+  --shadow-card-hover: 0 12px 40px rgba(0, 0, 0, 0.15);
+  
+  /* Transitions - Smoother animations */
+  --transition-fast: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 400ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  /* Icon Sizes */
+  --icon-xs: 1rem;     /* 16px */
+  --icon-sm: 1.25rem;  /* 20px */
+  --icon-md: 1.5rem;   /* 24px */
+  --icon-lg: 2rem;     /* 32px */
+  --icon-xl: 3rem;     /* 48px */
+  
+  /* Touch Targets (minimum 44x44px for accessibility) */
+  --touch-target: 44px;
+  
+  /* Z-index Scale */
+  --z-base: 1;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-modal: 300;
+  --z-popover: 400;
+  --z-tooltip: 500;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #1A2421;
+    --color-surface: #243430;
+    --color-border: #3A4A45;
+    --color-text: #E8F0ED;
+    --color-text-secondary: #A5C3B9;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text);
+  background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: var(--font-weight-normal);
+}
+
+/* Typography Hierarchy - Spendee Style */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 var(--spacing-md) 0;
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+h1 { 
+  font-size: var(--font-size-4xl); 
+  font-weight: var(--font-weight-extrabold); 
+  line-height: 1.2;
+}
+h2 { 
+  font-size: var(--font-size-3xl); 
+  font-weight: var(--font-weight-bold);
+}
+h3 { 
+  font-size: var(--font-size-2xl); 
+  font-weight: var(--font-weight-semibold);
+}
+h4 { 
+  font-size: var(--font-size-xl); 
+  font-weight: var(--font-weight-semibold);
+}
+
+p {
+  margin: 0 0 var(--spacing-md) 0;
+  line-height: var(--line-height-relaxed);
+}
+
+/* Utility Typography Classes */
+.text-xs { font-size: var(--font-size-xs); }
+.text-sm { font-size: var(--font-size-sm); }
+.text-base { font-size: var(--font-size-base); }
+.text-lg { font-size: var(--font-size-lg); }
+.text-xl { font-size: var(--font-size-xl); }
+
+.font-light { font-weight: var(--font-weight-light); }
+.font-normal { font-weight: var(--font-weight-normal); }
+.font-medium { font-weight: var(--font-weight-medium); }
+.font-semibold { font-weight: var(--font-weight-semibold); }
+.font-bold { font-weight: var(--font-weight-bold); }
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  font-weight: var(--font-weight-medium);
+}
+
+/* Material Symbols Icons */
+.material-symbols-rounded {
+  font-family: 'Material Symbols Rounded';
+  font-weight: normal;
+  font-style: normal;
+  font-size: var(--icon-md);
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'liga';
+  vertical-align: middle;
+}
+
+/* Utility Classes */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Focus styles for accessibility */
+:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Improved Interactive States */
+a, button, [role="button"], [role="tab"] {
+  -webkit-tap-highlight-color: rgba(0, 180, 216, 0.1);
+  touch-action: manipulation;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Micro-interaction Utility Classes */
+.card-hover {
+  transition: all var(--transition-base);
+}
+
+.card-hover:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.scale-hover {
+  transition: transform var(--transition-fast);
+}
+
+.scale-hover:hover {
+  transform: scale(1.05);
+}
+
+.fade-in {
+  animation: fadeIn var(--transition-base) ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bounce-in {
+  animation: bounceIn var(--transition-bounce) ease-out;
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Gradient Background Utilities */
+.gradient-primary {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+}
+
+.gradient-accent {
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-secondary) 100%);
+}
+
+.gradient-success {
+  background: linear-gradient(135deg, var(--color-success) 0%, var(--color-accent-mint) 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  .card-hover:hover,
+  .scale-hover:hover {
+    transform: none;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
