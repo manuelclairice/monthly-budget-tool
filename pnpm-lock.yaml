@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@oxc-parser/binding-linux-x64-gnu':
+        specifier: ^0.97.0
+        version: 0.97.0
       '@pinia/nuxt':
         specifier: ^0.5.1
         version: 0.5.5(magicast@0.5.1)(typescript@5.9.3)(vue@3.5.24(typescript@5.9.3))
@@ -1092,6 +1095,12 @@ packages:
 
   '@oxc-parser/binding-linux-x64-gnu@0.96.0':
     resolution: {integrity: sha512-8XSY9aUYY+5I4I1mhSEWmYqdUrJi3J5cCAInvEVHyTnDAPkhb+tnLGVZD696TpW+lFOLrTFF2V5GMWJVafqIUA==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [x64]
+    os: [linux]
+
+  '@oxc-parser/binding-linux-x64-gnu@0.97.0':
+    resolution: {integrity: sha512-Ck7cJMsZX19B0dvsl1v9a8VLeL9kEfUc0zMBjkgYmJfhVuINHcnZlQs8E5zTfD+dpP1wYzUhwgqv3o6hl9QaXA==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [x64]
     os: [linux]
@@ -5759,6 +5768,8 @@ snapshots:
 
   '@oxc-parser/binding-linux-x64-gnu@0.96.0':
     optional: true
+
+  '@oxc-parser/binding-linux-x64-gnu@0.97.0': {}
 
   '@oxc-parser/binding-linux-x64-musl@0.96.0':
     optional: true
