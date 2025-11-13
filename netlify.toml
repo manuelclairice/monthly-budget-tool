@@ -10,6 +10,8 @@
 [build.environment]
   NODE_VERSION = "20"
   PNPM_VERSION = "8"
+  NUXT_LOG_LEVEL = "debug"
+  DEBUG = "*"
 
 # Cache optimization
 [[headers]]
