@@ -1,12 +1,20 @@
 import { defineStore } from 'pinia'
-import type { BudgetState, Expense, Income } from '~/types/budget'
+import type { BudgetState, Expense, Income, MonthlyBudgetSnapshot } from '~/types/budget'
 
 const STORAGE_KEY = 'monthly-budget-data'
+const HISTORY_STORAGE_KEY = 'monthly-budget-history'
+
+interface ExtendedBudgetState extends BudgetState {
+  currentMonth: string
+  previousMonths: Record<string, MonthlyBudgetSnapshot>
+}
 
 export const useBudgetStore = defineStore('budget', {
-  state: (): BudgetState => ({
+  state: (): ExtendedBudgetState => ({
     expenses: [],
-    income: []
+    income: [],
+    currentMonth: '',
+    previousMonths: {}
   }),
 
   getters: {
@@ -52,6 +60,17 @@ export const useBudgetStore = defineStore('budget', {
       this.saveToStorage()
     },
 
+    updateExpense(id: string, updates: Partial<Omit<Expense, 'id'>>) {
+      const index = this.expenses.findIndex(expense => expense.id === id)
+      if (index !== -1) {
+        this.expenses[index] = {
+          ...this.expenses[index]!,
+          ...updates
+        }
+        this.saveToStorage()
+      }
+    },
+
     addIncome(income: Omit<Income, 'id'>) {
       const newIncome: Income = {
         ...income,
@@ -66,13 +85,27 @@ export const useBudgetStore = defineStore('budget', {
       this.saveToStorage()
     },
 
+    updateIncome(id: string, updates: Partial<Omit<Income, 'id'>>) {
+      const index = this.income.findIndex(income => income.id === id)
+      if (index !== -1) {
+        this.income[index] = {
+          ...this.income[index]!,
+          ...updates
+        }
+        this.saveToStorage()
+      }
+    },
+
     saveToStorage() {
       if (typeof window !== 'undefined') {
         try {
           localStorage.setItem(STORAGE_KEY, JSON.stringify({
             expenses: this.expenses,
-            income: this.income
+            income: this.income,
+            currentMonth: this.currentMonth
           }))
+          // Save history separately to avoid data loss
+          localStorage.setItem(HISTORY_STORAGE_KEY, JSON.stringify(this.previousMonths))
         } catch (error) {
           console.error('Failed to save budget data:', error)
         }
@@ -87,11 +120,23 @@ export const useBudgetStore = defineStore('budget', {
             const parsed = JSON.parse(data)
             this.expenses = parsed.expenses || []
             this.income = parsed.income || []
+            this.currentMonth = parsed.currentMonth || ''
+          }
+
+          // Load history
+          const historyData = localStorage.getItem(HISTORY_STORAGE_KEY)
+          if (historyData) {
+            this.previousMonths = JSON.parse(historyData)
           }
         } catch (error) {
           console.error('Failed to load budget data:', error)
         }
       }
+    },
+
+    archiveMonth(snapshot: MonthlyBudgetSnapshot) {
+      this.previousMonths[snapshot.month] = snapshot
+      this.saveToStorage()
     },
 
     initializeSampleData() {

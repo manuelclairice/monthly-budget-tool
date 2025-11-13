@@ -23,7 +23,7 @@
 
         <div class="form-row">
           <div class="form-group">
-            <label for="amount">Amount ($)</label>
+            <label for="amount">Amount (€)</label>
             <input
               id="amount"
               v-model.number="newIncome.amount"
@@ -61,23 +61,83 @@
         :key="income.id"
         class="income-item"
       >
-        <div class="income-icon">{{ getSourceIcon(income.source) }}</div>
-        <div class="income-details">
-          <h4>{{ income.description }}</h4>
-          <p class="income-meta">
-            {{ income.source }} • {{ formatDate(income.date) }}
-          </p>
-        </div>
-        <div class="income-amount">
-          ${{ income.amount.toLocaleString() }}
-        </div>
-        <button
-          class="btn-delete"
-          @click="removeIncome(income.id)"
-          aria-label="Delete income"
-        >
-          🗑️
-        </button>
+        <!-- Edit Mode -->
+        <template v-if="editingId === income.id">
+          <div class="edit-form">
+            <div class="form-group">
+              <label :for="`edit-description-${income.id}`">Description</label>
+              <input
+                :id="`edit-description-${income.id}`"
+                v-model="editForm.description"
+                type="text"
+                required
+              />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label :for="`edit-amount-${income.id}`">Amount (€)</label>
+                <input
+                  :id="`edit-amount-${income.id}`"
+                  v-model.number="editForm.amount"
+                  type="number"
+                  step="0.01"
+                  min="0.01"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label :for="`edit-source-${income.id}`">Source</label>
+                <select :id="`edit-source-${income.id}`" v-model="editForm.source">
+                  <option v-for="src in sources" :key="src" :value="src">
+                    {{ src }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="edit-actions">
+              <button class="btn btn-primary btn-sm" @click="saveEdit(income.id)">
+                <span class="material-symbols-rounded btn-icon-inline">check</span>
+                Save
+              </button>
+              <button class="btn btn-secondary btn-sm" @click="cancelEdit">
+                <span class="material-symbols-rounded btn-icon-inline">close</span>
+                Cancel
+              </button>
+            </div>
+          </div>
+        </template>
+
+        <!-- View Mode -->
+        <template v-else>
+          <div class="income-icon">
+            <span class="material-symbols-rounded">{{ getSourceIcon(income.source) }}</span>
+          </div>
+          <div class="income-details">
+            <h4>{{ income.description }}</h4>
+            <p class="income-meta">
+              {{ income.source }} • {{ formatDate(income.date) }}
+            </p>
+          </div>
+          <div class="income-amount">
+            €{{ income.amount.toLocaleString() }}
+          </div>
+          <button
+            class="btn-icon btn-icon--edit"
+            @click="startEdit(income)"
+            :aria-label="`Edit ${income.description}`"
+            title="Edit income"
+          >
+            <span class="material-symbols-rounded">edit</span>
+          </button>
+          <button
+            class="btn-icon btn-icon--delete"
+            @click="removeIncome(income.id)"
+            :aria-label="`Delete ${income.description}`"
+            title="Delete income"
+          >
+            <span class="material-symbols-rounded">delete</span>
+          </button>
+        </template>
       </div>
     </div>
   </div>
@@ -86,11 +146,20 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useBudget } from '~/composables/useBudget'
+import type { Income } from '~/types/budget'
 
-const { addIncome, removeIncome, incomeItems } = useBudget()
+const { addIncome, removeIncome, updateIncome, incomeItems } = useBudget()
 
 const showForm = ref(false)
+const editingId = ref<string | null>(null)
+
 const newIncome = ref({
+  description: '',
+  amount: 0,
+  source: 'Salary'
+})
+
+const editForm = ref({
   description: '',
   amount: 0,
   source: 'Salary'
@@ -122,6 +191,35 @@ const handleSubmit = () => {
   }
 }
 
+const startEdit = (income: Income) => {
+  editingId.value = income.id
+  editForm.value = {
+    description: income.description,
+    amount: income.amount,
+    source: income.source
+  }
+}
+
+const saveEdit = (id: string) => {
+  if (editForm.value.description && editForm.value.amount > 0) {
+    updateIncome(id, {
+      description: editForm.value.description,
+      amount: editForm.value.amount,
+      source: editForm.value.source
+    })
+    cancelEdit()
+  }
+}
+
+const cancelEdit = () => {
+  editingId.value = null
+  editForm.value = {
+    description: '',
+    amount: 0,
+    source: 'Salary'
+  }
+}
+
 const formatDate = (dateString: string) => {
   return new Date(dateString).toLocaleDateString('en-US', {
     year: 'numeric',
@@ -132,14 +230,14 @@ const formatDate = (dateString: string) => {
 
 const getSourceIcon = (source: string) => {
   const icons: Record<string, string> = {
-    'Salary': '💼',
-    'Freelance': '💻',
-    'Investment': '📈',
-    'Business': '🏢',
-    'Gift': '🎁',
-    'Other': '💰'
+    'Salary': 'work',
+    'Freelance': 'laptop_mac',
+    'Investment': 'trending_up',
+    'Business': 'business',
+    'Gift': 'card_giftcard',
+    'Other': 'payments'
   }
-  return icons[source] || '💰'
+  return icons[source] || 'payments'
 }
 </script>
 
@@ -161,6 +259,9 @@ const getSourceIcon = (source: string) => {
 }
 
 .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
   padding: var(--spacing-sm) var(--spacing-lg);
   border: none;
   border-radius: var(--radius-md);
@@ -170,14 +271,25 @@ const getSourceIcon = (source: string) => {
   transition: all var(--transition-fast);
 }
 
+.btn-icon-inline {
+  font-size: var(--icon-xs);
+}
+
 .btn-primary {
-  background-color: var(--color-primary);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
   color: white;
+  box-shadow: 0 2px 6px rgba(107, 170, 158, 0.25);
 }
 
 .btn-primary:hover {
-  background-color: var(--color-primary-dark);
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
   box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 3px rgba(107, 170, 158, 0.3);
 }
 
 .btn-block {
@@ -186,9 +298,10 @@ const getSourceIcon = (source: string) => {
 
 .income-form {
   padding: var(--spacing-xl);
-  background-color: var(--color-surface);
+  background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-accent) 100%);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
+  border: 2px solid var(--color-accent);
 }
 
 .income-form h3 {
@@ -217,19 +330,21 @@ const getSourceIcon = (source: string) => {
 .form-group select {
   width: 100%;
   padding: var(--spacing-sm) var(--spacing-md);
-  border: 2px solid var(--color-border);
+  border: 2px solid var(--color-accent);
   border-radius: var(--radius-md);
   font-size: var(--font-size-base);
   font-family: inherit;
-  background-color: var(--color-background);
+  background-color: var(--color-surface);
   color: var(--color-text);
-  transition: border-color var(--transition-fast);
+  transition: all var(--transition-base);
 }
 
 .form-group input:focus,
 .form-group select:focus {
   outline: none;
   border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(107, 170, 158, 0.1);
+  background-color: var(--color-surface);
 }
 
 .income-list {
@@ -248,15 +363,104 @@ const getSourceIcon = (source: string) => {
   border-left: 4px solid var(--color-success);
   box-shadow: var(--shadow-sm);
   transition: all var(--transition-fast);
+  position: relative;
 }
 
 .income-item:hover {
   box-shadow: var(--shadow-md);
 }
 
+.edit-form {
+  width: 100%;
+}
+
+.edit-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+}
+
+.btn-sm {
+  padding: var(--spacing-xs) var(--spacing-md);
+  font-size: var(--font-size-sm);
+}
+
+.btn-secondary {
+  background-color: var(--color-accent);
+  color: var(--color-text);
+  border: 1px solid var(--color-secondary);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-secondary);
+  color: var(--color-text);
+  border-color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+}
+
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--touch-target);
+  height: var(--touch-target);
+  padding: 0;
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: var(--radius-md);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-size: var(--icon-sm);
+}
+
+.btn-icon:hover {
+  background-color: var(--color-accent);
+  border-color: var(--color-secondary);
+  transform: scale(1.05);
+}
+
+.btn-icon:active {
+  transform: scale(0.95);
+}
+
+.btn-icon--edit {
+  color: var(--color-primary);
+}
+
+.btn-icon--edit:hover {
+  background-color: rgba(107, 170, 158, 0.1);
+  border-color: var(--color-primary);
+  color: var(--color-primary-dark);
+}
+
+.btn-icon--delete {
+  color: var(--color-danger);
+}
+
+.btn-icon--delete:hover {
+  background-color: rgba(216, 154, 158, 0.1);
+  border-color: var(--color-danger);
+  color: #C5898D;
+}
+
 .income-icon {
   font-size: 2rem;
   line-height: 1;
+  color: var(--color-success);
+  transition: transform var(--transition-fast);
+}
+
+.income-item:hover .income-icon {
+  transform: scale(1.1);
+}
+
+.income-icon .material-symbols-rounded {
+  font-size: 2rem;
 }
 
 .income-details {
@@ -279,21 +483,7 @@ const getSourceIcon = (source: string) => {
   font-size: var(--font-size-lg);
   font-weight: 700;
   color: var(--color-success);
-}
-
-.btn-delete {
-  padding: var(--spacing-sm);
-  background: none;
-  border: none;
-  font-size: var(--font-size-lg);
-  cursor: pointer;
-  opacity: 0.6;
-  transition: all var(--transition-fast);
-}
-
-.btn-delete:hover {
-  opacity: 1;
-  transform: scale(1.1);
+  white-space: nowrap;
 }
 
 .empty-state {

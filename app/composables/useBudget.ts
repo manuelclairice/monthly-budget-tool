@@ -29,12 +29,20 @@ export function useBudget() {
     store.removeExpense(id)
   }
 
+  const updateExpense = (id: string, updates: Partial<Omit<Expense, 'id'>>) => {
+    store.updateExpense(id, updates)
+  }
+
   const addIncome = (income: Omit<Income, 'id'>) => {
     store.addIncome(income)
   }
 
   const removeIncome = (id: string) => {
     store.removeIncome(id)
+  }
+
+  const updateIncome = (id: string, updates: Partial<Omit<Income, 'id'>>) => {
+    store.updateIncome(id, updates)
   }
 
   const initializeBudget = () => {
@@ -60,8 +68,10 @@ export function useBudget() {
     // Actions
     addExpense,
     removeExpense,
+    updateExpense,
     addIncome,
     removeIncome,
+    updateIncome,
     initializeBudget,
     clearAllData
   }

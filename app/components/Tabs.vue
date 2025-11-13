@@ -25,7 +25,9 @@
         @click="selectTab(tab.id, tab.disabled)"
         @keydown="handleKeydown($event, index)"
       >
-        <span v-if="tab.icon" class="tab-icon" aria-hidden="true">{{ tab.icon }}</span>
+        <span v-if="tab.icon" class="material-symbols-rounded tab-icon" aria-hidden="true">
+          {{ tab.icon }}
+        </span>
         <span class="tab-label">{{ tab.label }}</span>
       </button>
     </div>
@@ -111,8 +113,9 @@ const handleKeydown = (event: KeyboardEvent, index: number) => {
       : (newIndex < props.tabs.length - 1 ? newIndex + 1 : 0)
   }
 
-  if (!props.tabs[newIndex]?.disabled) {
-    selectTab(props.tabs[newIndex].id)
+  const targetTab = props.tabs[newIndex]
+  if (targetTab && !targetTab.disabled) {
+    selectTab(targetTab.id)
     // Focus the new tab
     const tabElements = document.querySelectorAll('[role="tab"]')
     ;(tabElements[newIndex] as HTMLElement)?.focus()
@@ -128,70 +131,115 @@ const handleKeydown = (event: KeyboardEvent, index: number) => {
 .tabs-list {
   display: flex;
   gap: var(--spacing-sm);
-  border-bottom: 2px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
+  scrollbar-width: none;
+  background-color: var(--color-surface);
+  padding: var(--spacing-sm) 0;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
 }
 
 .tabs-list::-webkit-scrollbar {
-  height: 4px;
-}
-
-.tabs-list::-webkit-scrollbar-track {
-  background: var(--color-surface);
-}
-
-.tabs-list::-webkit-scrollbar-thumb {
-  background: var(--color-border);
-  border-radius: var(--radius-sm);
+  display: none;
 }
 
 .tab {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: var(--spacing-sm);
+  justify-content: center;
+  gap: var(--spacing-xs);
   padding: var(--spacing-md) var(--spacing-lg);
-  background: none;
-  border: none;
-  border-bottom: 3px solid transparent;
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: var(--radius-xl);
   color: var(--color-text-secondary);
-  font-size: var(--font-size-base);
-  font-weight: 500;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
   white-space: nowrap;
   transition: all var(--transition-fast);
   position: relative;
-  margin-bottom: -2px;
+  min-height: var(--touch-target);
+  cursor: pointer;
 }
 
 .tab:hover:not(.tab--disabled) {
-  color: var(--color-text);
-  background-color: var(--color-surface);
+  color: var(--color-primary);
+  background-color: rgba(0, 180, 216, 0.08);
+  transform: translateY(-2px);
+  border-color: var(--color-primary-light);
 }
 
 .tab:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: -2px;
-  z-index: 1;
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+  z-index: var(--z-base);
 }
 
 .tab--active {
-  color: var(--color-primary);
-  border-bottom-color: var(--color-primary);
+  color: white;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  font-weight: var(--font-weight-semibold);
+  box-shadow: var(--shadow-md);
+  border-color: transparent;
+  transform: translateY(-2px);
+}
+
+.tab--active::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-orange) 100%);
+  border-radius: var(--radius-xl);
+  z-index: -1;
+  opacity: 0.3;
+  filter: blur(8px);
 }
 
 .tab--disabled {
-  opacity: 0.5;
+  opacity: 0.4;
   cursor: not-allowed;
 }
 
 .tab-icon {
-  font-size: var(--font-size-lg);
+  font-size: var(--icon-md);
   line-height: 1;
+  transition: transform var(--transition-bounce);
+}
+
+.tab:hover:not(.tab--disabled) .tab-icon {
+  transform: scale(1.15);
+}
+
+.tab--active .tab-icon {
+  transform: scale(1.2);
+  animation: iconBounce 0.6s ease-out;
+}
+
+@keyframes iconBounce {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1.2);
+  }
 }
 
 .tab-label {
-  line-height: 1;
+  line-height: 1.2;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+}
+
+.tab--active .tab-label {
+  font-weight: var(--font-weight-bold);
 }
 
 .tab-panel {
@@ -202,15 +250,67 @@ const handleKeydown = (event: KeyboardEvent, index: number) => {
   display: none;
 }
 
-/* Mobile optimization */
-@media (max-width: 640px) {
+/* Desktop: Horizontal tabs */
+@media (min-width: 769px) {
+  .tabs-list {
+    justify-content: center;
+    gap: var(--spacing-md);
+  }
+  
   .tab {
-    padding: var(--spacing-sm) var(--spacing-md);
-    font-size: var(--font-size-sm);
+    flex-direction: row;
+    padding: var(--spacing-md) var(--spacing-xl);
+  }
+  
+  .tab-label {
+    font-size: var(--font-size-base);
+  }
+}
+
+/* Mobile: Bottom navigation bar */
+@media (max-width: 768px) {
+  .tabs {
+    position: relative;
+  }
+  
+  .tabs-list {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: var(--z-sticky);
+    background: white;
+    border-top: 1px solid var(--color-border);
+    border-bottom: none;
+    border-radius: 0;
+    padding: var(--spacing-xs) var(--spacing-sm) calc(var(--spacing-xs) + env(safe-area-inset-bottom));
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.1);
+    justify-content: space-around;
+    gap: 0;
+  }
+  
+  .tab {
+    flex: 1;
+    padding: var(--spacing-sm) var(--spacing-xs);
+    border-radius: var(--radius-lg);
+    min-width: 0;
   }
   
   .tab-icon {
-    font-size: var(--font-size-base);
+    font-size: var(--icon-lg);
+  }
+  
+  .tab-label {
+    font-size: 0.625rem;
+    text-align: center;
+  }
+  
+  .tab--active {
+    transform: translateY(0);
+  }
+  
+  .tab:hover:not(.tab--disabled) {
+    transform: scale(1.05);
   }
 }
 </style>

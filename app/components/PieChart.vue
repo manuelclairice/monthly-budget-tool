@@ -39,16 +39,16 @@ const canvasRef = ref<HTMLCanvasElement | null>(null)
 const chartInstance = ref<Chart | null>(null)
 
 const chartColors = [
-  '#3b82f6', // blue
-  '#10b981', // green
-  '#f59e0b', // amber
-  '#ef4444', // red
-  '#8b5cf6', // purple
-  '#ec4899', // pink
-  '#06b6d4', // cyan
-  '#f97316', // orange
-  '#14b8a6', // teal
-  '#6366f1'  // indigo
+  '#00B4D8', // Cyan
+  '#7B68EE', // Purple
+  '#FF6B9D', // Pink
+  '#FFB347', // Orange
+  '#A8E6CF', // Mint
+  '#4CC9F0', // Sky blue
+  '#C77DFF', // Lavender
+  '#FFC6FF', // Light pink
+  '#06D6A0', // Teal green
+  '#FFD60A'  // Yellow
 ]
 
 const chartData = computed(() => ({
@@ -58,57 +58,68 @@ const chartData = computed(() => ({
     backgroundColor: props.data.map((item, index) => 
       item.color || chartColors[index % chartColors.length]
     ),
-    borderWidth: 2,
-    borderColor: '#ffffff',
-    hoverOffset: 10
+    borderWidth: 4,
+    borderColor: '#FFFFFF',
+    hoverOffset: 16,
+    hoverBorderColor: '#FFFFFF',
+    hoverBorderWidth: 6
   }]
 }))
 
-const chartConfig = computed<ChartConfiguration<'pie'>>(() => ({
-  type: 'pie',
+const chartConfig = computed(() => ({
+  type: 'pie' as const,
   data: chartData.value,
   options: {
     responsive: true,
     maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        position: 'bottom',
-        labels: {
-          padding: 15,
-          font: {
-            size: 12
-          },
-          usePointStyle: true,
-          pointStyle: 'circle'
-        }
-      },
-      tooltip: {
-        callbacks: {
-          label: (context) => {
-            const label = context.label || ''
-            const value = context.parsed || 0
-            const total = context.dataset.data.reduce((a: number, b: number) => a + b, 0)
-            const percentage = ((value / total) * 100).toFixed(1)
-            return `${label}: $${value.toLocaleString()} (${percentage}%)`
-          }
-        },
-        backgroundColor: 'rgba(0, 0, 0, 0.8)',
-        padding: 12,
-        cornerRadius: 8,
-        titleFont: {
-          size: 14,
-          weight: 'bold'
-        },
-        bodyFont: {
-          size: 13
-        }
-      }
-    },
     animation: {
       animateRotate: true,
       animateScale: true,
       duration: 800,
-      easing: 'easeInOutQuart'
+      easing: 'easeOutQuart' as const
+    },
+    plugins: {
+      legend: {
+        position: 'bottom' as const,
+        labels: {
+          padding: 20,
+          font: {
+            size: 14,
+            family: 'Poppins, sans-serif',
+            weight: 500 as const
+          },
+          usePointStyle: true,
+          pointStyle: 'circle' as const,
+          color: '#212529',
+          boxWidth: 12,
+          boxHeight: 12
+        }
+      },
+      tooltip: {
+        callbacks: {
+          label: (context: any) => {
+            const label = context.label || ''
+            const value = context.parsed || 0
+            const total = (context.dataset.data as number[]).reduce((a: number, b: number) => a + b, 0)
+            const percentage = ((value / total) * 100).toFixed(1)
+            return `${label}: €${value.toLocaleString()} (${percentage}%)`
+          }
+        },
+        backgroundColor: 'rgba(33, 37, 41, 0.95)',
+        padding: 16,
+        cornerRadius: 12,
+        titleFont: {
+          size: 15,
+          weight: 600 as const,
+          family: 'Poppins, sans-serif'
+        },
+        bodyFont: {
+          size: 14,
+          family: 'Poppins, sans-serif'
+        },
+        borderColor: 'rgba(0, 180, 216, 0.2)',
+        borderWidth: 2
+      }
     }
   }
 }))
@@ -162,15 +173,19 @@ defineExpose({
 }
 
 .chart-title {
-  margin: 0 0 var(--spacing-lg) 0;
-  font-size: var(--font-size-xl);
-  font-weight: 600;
+  margin: 0 0 var(--spacing-xl) 0;
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
   color: var(--color-text);
+  font-family: var(--font-display);
 }
 
 .chart-container {
   position: relative;
   width: 100%;
+  padding: var(--spacing-md);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, rgba(0, 180, 216, 0.02) 0%, rgba(123, 104, 238, 0.02) 100%);
 }
 
 canvas {

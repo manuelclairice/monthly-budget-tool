@@ -4,26 +4,26 @@
 
     <div class="insights-grid">
       <div class="insight-card">
-        <h3>💡 Key Insights</h3>
+        <h3><span class="material-symbols-rounded insight-icon insight-icon--key">lightbulb</span> Key Insights</h3>
         <ul>
           <li>
             <strong>Savings Rate:</strong> {{ savingsRate }}% of your income
           </li>
           <li>
-            <strong>Average Expense:</strong> ${{ averageExpense.toLocaleString(undefined, { maximumFractionDigits: 2 }) }}
+            <strong>Average Expense:</strong> €{{ averageExpense.toLocaleString(undefined, { maximumFractionDigits: 2 }) }}
           </li>
           <li>
-            <strong>Average Income:</strong> ${{ averageIncome.toLocaleString(undefined, { maximumFractionDigits: 2 }) }}
+            <strong>Average Income:</strong> €{{ averageIncome.toLocaleString(undefined, { maximumFractionDigits: 2 }) }}
           </li>
           <li v-if="topExpenseCategory">
-            <strong>Top Expense Category:</strong> {{ topExpenseCategory.category }} 
-            (${{ topExpenseCategory.amount.toLocaleString() }})
+            <strong>Top Expense Category:</strong> {{ topExpenseCategory.category }}
+            (€{{ topExpenseCategory.amount.toLocaleString() }})
           </li>
         </ul>
       </div>
 
       <div class="insight-card">
-        <h3>📊 Summary</h3>
+        <h3><span class="material-symbols-rounded insight-icon insight-icon--summary">bar_chart</span> Summary</h3>
         <ul>
           <li>Total Transactions: {{ expenses.length + incomeItems.length }}</li>
           <li>Expense Entries: {{ expenses.length }}</li>
@@ -64,7 +64,7 @@
         <div class="comparison-bar">
           <div class="bar-label">
             <span>Income</span>
-            <span class="bar-value">${{ totalIncome.toLocaleString() }}</span>
+            <span class="bar-value">€{{ totalIncome.toLocaleString() }}</span>
           </div>
           <div class="bar-container">
             <div 
@@ -77,7 +77,7 @@
         <div class="comparison-bar">
           <div class="bar-label">
             <span>Expenses</span>
-            <span class="bar-value">${{ totalExpenses.toLocaleString() }}</span>
+            <span class="bar-value">€{{ totalExpenses.toLocaleString() }}</span>
           </div>
           <div class="bar-container">
             <div 
@@ -93,7 +93,7 @@
           <div class="bar-label">
             <span>Balance</span>
             <span class="bar-value" :class="{ 'negative': balance < 0 }">
-              ${{ balance.toLocaleString() }}
+              €{{ balance.toLocaleString() }}
             </span>
           </div>
           <div class="bar-container">
@@ -187,14 +187,40 @@ const savingsRate = computed(() => {
 
 .insight-card {
   padding: var(--spacing-xl);
-  background-color: var(--color-surface);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
+  border: 2px solid var(--color-accent);
+  transition: all var(--transition-base);
+}
+
+.insight-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
 }
 
 .insight-card h3 {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
   margin: 0 0 var(--spacing-md) 0;
   font-size: var(--font-size-xl);
+}
+
+.insight-icon {
+  font-size: var(--icon-md);
+  transition: transform var(--transition-fast);
+}
+
+.insight-icon--key {
+  color: var(--color-warning);
+}
+
+.insight-icon--summary {
+  color: var(--color-primary);
+}
+
+.insight-card:hover .insight-icon {
+  transform: scale(1.1) rotate(5deg);
 }
 
 .insight-card ul {
@@ -205,7 +231,8 @@ const savingsRate = computed(() => {
 
 .insight-card li {
   padding: var(--spacing-sm) 0;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-secondary);
+  font-weight: 500;
 }
 
 .insight-card li:last-child {
@@ -223,6 +250,7 @@ const savingsRate = computed(() => {
   background-color: var(--color-surface);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
+  border: 2px solid var(--color-accent);
 }
 
 .empty-chart {
@@ -232,16 +260,17 @@ const savingsRate = computed(() => {
   padding: var(--spacing-2xl);
   background-color: var(--color-surface);
   border-radius: var(--radius-lg);
-  border: 2px dashed var(--color-border);
+  border: 2px dashed var(--color-secondary);
   color: var(--color-text-secondary);
   min-height: 350px;
+  font-weight: 500;
 }
 
 .comparison-card {
   padding: var(--spacing-xl);
-  background-color: var(--color-surface);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
+  border: 2px solid var(--color-accent);
 }
 
 .comparison-card h3 {
