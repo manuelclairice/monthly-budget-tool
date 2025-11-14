@@ -302,7 +302,6 @@ const getCategoryIcon = (category: string) => {
 
 .expense-form {
   padding: var(--spacing-xl);
-  background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-accent) 100%);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
   border: 2px solid var(--color-accent);
