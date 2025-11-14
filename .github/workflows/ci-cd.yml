@@ -96,7 +96,7 @@ jobs:
           path: .output/public/
 
       - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v2.0
+        uses: nwtgck/actions-netlify@v2.1
         with:
           publish-dir: '.output/public'
           production-deploy: true
