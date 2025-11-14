@@ -178,26 +178,11 @@ const handleKeydown = (event: KeyboardEvent, index: number) => {
 }
 
 .tab--active {
-  color: white;
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  color: var(--color-primary);
+  background-color: rgba(0, 180, 216, 0.08);
   font-weight: var(--font-weight-semibold);
-  box-shadow: var(--shadow-md);
-  border-color: transparent;
+  border-color: var(--color-primary-light);
   transform: translateY(-2px);
-}
-
-.tab--active::before {
-  content: '';
-  position: absolute;
-  top: -1px;
-  left: -1px;
-  right: -1px;
-  bottom: -1px;
-  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-orange) 100%);
-  border-radius: var(--radius-xl);
-  z-index: -1;
-  opacity: 0.3;
-  filter: blur(8px);
 }
 
 .tab--disabled {
