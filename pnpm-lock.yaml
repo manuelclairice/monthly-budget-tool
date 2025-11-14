@@ -46,8 +46,8 @@ importers:
         specifier: ^20.14.0
         version: 20.19.25
       '@vitejs/plugin-vue':
-        specifier: ^5.0.0
-        version: 5.2.4(vite@5.4.21(@types/node@20.19.25)(terser@5.44.1))(vue@3.5.24(typescript@5.9.3))
+        specifier: ^6.0.0
+        version: 6.0.1(vite@5.4.21(@types/node@20.19.25)(terser@5.44.1))(vue@3.5.24(typescript@5.9.3))
       '@vitest/ui':
         specifier: ^2.0.0
         version: 2.1.9(vitest@2.1.9)
@@ -1599,13 +1599,6 @@ packages:
     peerDependencies:
       vite: ^5.0.0 || ^6.0.0 || ^7.0.0
       vue: ^3.0.0
-
-  '@vitejs/plugin-vue@5.2.4':
-    resolution: {integrity: sha512-7Yx/SXSOcQq5HiiV3orevHUFn+pmMB4cgbEkDYgnkUWb0WfeQ/wa2yFv6D5ICiCQOVpjA7vYDXrC7AGO8yjDHA==}
-    engines: {node: ^18.0.0 || >=20.0.0}
-    peerDependencies:
-      vite: ^5.0.0 || ^6.0.0
-      vue: ^3.2.25
 
   '@vitejs/plugin-vue@6.0.1':
     resolution: {integrity: sha512-+MaE752hU0wfPFJEUAIxqw18+20euHHdxVtMvbFcOEpjEyfqXH/5DCoTHiVJ0J29EhTJdoTkjEv5YBKU9dnoTw==}
@@ -5984,8 +5977,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@vitejs/plugin-vue@5.2.4(vite@5.4.21(@types/node@20.19.25)(terser@5.44.1))(vue@3.5.24(typescript@5.9.3))':
+  '@vitejs/plugin-vue@6.0.1(vite@5.4.21(@types/node@20.19.25)(terser@5.44.1))(vue@3.5.24(typescript@5.9.3))':
     dependencies:
+      '@rolldown/pluginutils': 1.0.0-beta.29
       vite: 5.4.21(@types/node@20.19.25)(terser@5.44.1)
       vue: 3.5.24(typescript@5.9.3)
 
