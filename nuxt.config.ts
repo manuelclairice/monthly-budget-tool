@@ -59,8 +59,19 @@ export default defineNuxtConfig({
   // Modules (add Storyblok when ready)
   modules: [
     '@pinia/nuxt',
+    '@nuxtjs/supabase'
     // '@storyblok/nuxt' // Uncomment when ready to use Storyblok
   ],
+  
+  // Supabase configuration
+  supabase: {
+    redirect: false, // We'll handle redirects manually
+    redirectOptions: {
+      login: '/login',
+      callback: '/confirm',
+      exclude: ['/login', '/signup']
+    }
+  },
   
   // Netlify-specific optimizations
   nitro: {
