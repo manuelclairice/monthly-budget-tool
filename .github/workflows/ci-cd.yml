@@ -2,9 +2,9 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [main, develop]
+    branches: [main,synchronize, mainented, develop]
   pull_request:
-    branches: [main, develop]
+    branches: [main,synchronize, mainented, develop]
 
 jobs:
   lint-and-test:
@@ -13,17 +13,17 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v3
         with:
           version: 8
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: '18'
+          node-version: '22'
           cache: 'pnpm'
 
       - name: Install dependencies
@@ -52,7 +52,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
@@ -62,7 +62,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '25'
           cache: 'pnpm'
 
       - name: Install dependencies
@@ -87,10 +87,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Download build artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: dist
           path: .output/public/
@@ -99,7 +99,7 @@ jobs:
         uses: nwtgck/actions-netlify@v2.1
         with:
           publish-dir: '.output/public'
-          production-deploy: true
+          production-deploy: false
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: 'Deploy from GitHub Actions'
         env:
