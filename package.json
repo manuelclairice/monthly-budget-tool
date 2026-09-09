@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@nuxtjs/supabase": "^2.0.1",
-    "@oxc-minify/binding-linux-x64-gnu": "0.97.0",
+    "@oxc-minify/binding-linux-x64-gnu": "0.149.0",
     "@oxc-parser/binding-linux-x64-gnu": "^0.97.0",
     "@oxc-transform/binding-linux-x64-gnu": "^0.97.0",
     "@pinia/nuxt": "^0.5.1",
